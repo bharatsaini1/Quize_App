@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Result</title>
+</head>
+<body>
+    <h1>Quiz Generated</h1>
+    <p>Here is your generated quiz based on your selections:</p>
+
+    {% if quiz_data %}
+        <h2>Quiz Difficulty: {{ quiz_data.metadata.difficulty }}</h2>
+        <ul>
+            {% for question in quiz_data.questions %}
+                <li>
+                    <strong>{{ question.question }}</strong><br>
+                    Options:
+                    <ul>
+                        {% for option in question.options %}
+                            <li>{{ option }}</li>
+                        {% endfor %}
+                    </ul>
+                    Correct Answer: {{ question.answer }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No quiz data available.</p>
+    {% endif %}
+    
+</body>
+</html>
